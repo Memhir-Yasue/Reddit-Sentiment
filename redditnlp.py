@@ -25,7 +25,7 @@ def version005(): # Prints sentiment of each comment per post
 			if (score != 0):
 				print(title,': ',string_comment,': ', score)
 				print('\n')
-# version015()
+
 
 def version100(): # Print the average sentiment of the comments per post
 	i = 1
@@ -45,8 +45,29 @@ def version100(): # Print the average sentiment of the comments per post
 			print('\n')
 		i+=1
 
+def version103(): # Include the post's mainbody in average sentiment calculation
+    i = 1
+    for submission in reddit.subreddit('Temple').hot(limit=10):
+    	i+=1
+    	title = submission.title
+    	comments = submission.comments
+    	sub_body = TextBlob(submission.selftext)	# body text from the post's mainbody
+    	sub_score = sub_body.sentiment.polarity
+    	score_Array = []							# Score from each comment
+    	score_Array.append(sub_score)
+    	comments.replace_more(limit=0) 				# To stop the 'MoreComments object has no attribute body' error
+    	# print(sub_body, sub_score)
+    	# print('\n')
+    	for comment in comments:
+    		string_comment = TextBlob(comment.body)
+    		score = string_comment.sentiment.polarity
+    		score_Array.append(score)
+    		nc = len(score_Array)						# nc = # of comment
+    		if (nc!=0): 								# To avoid posts with no comments on them
+    		    avrg_Score = sum(score_Array)/nc 		# Average polarity for all comments.
+    		    print(i,': ',title,':  ',avrg_Score)
+    		    print('\n')
 
-# def version103(): # Include the post's mainbody in sentiment calculation
 
 def version105(): # Print the average sentiment for a subreddit
 	i = 1
@@ -54,7 +75,10 @@ def version105(): # Print the average sentiment for a subreddit
 	for submission in reddit.subreddit('UPenn').hot(limit=900):
 		title = submission.title
 		comments = submission.comments
+		sub_body = TextBlob(submission.selftext)
+		sub_score = sub_body.sentiment.polarity
 		score_Array = [] 							# Score from each comment
+		score_Array.append(sub_score)
 		comments.replace_more(limit=0) 				# To stop the 'MoreComments object has no attribute body' error
 		for comment in comments:
 			string_comment = TextBlob(comment.body)
@@ -97,7 +121,10 @@ def version108():
 	for submission in reddit.subreddit('depression').hot(limit=900):
 		title = submission.title
 		comments = submission.comments
+		sub_body = TextBlob(submission.selftext)
+		sub_score = sub_body.sentiment.polarity
 		score_Array = [] 							# Score from each comment
+		score_Array.append(sub_score)
 		comments.replace_more(limit=0) 				# To stop the 'MoreComments object has no attribute body' error
 		for comment in comments:
 			string_comment = TextBlob(comment.body)
@@ -115,4 +142,7 @@ def version108():
 		index_list.append(j)
 	plt.plot(index_list, avrgscore_list)
 	plt.show()
-version108()	
+
+def main():
+	version108()
+main()
