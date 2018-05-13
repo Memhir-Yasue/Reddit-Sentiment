@@ -1,4 +1,6 @@
 from textblob import TextBlob
+from matplotlib import pyplot as plt
+from flask import Flask, request, render_template, session
 import praw
 import config
 
@@ -16,7 +18,7 @@ def version001(): #Prints sentiment of each post
 # version01()
 
 def version005(): # Prints sentiment of each comment per post
-	for submission in reddit.subreddit('Temple').hot(limit=20):
+	for submission in reddit.subreddit('depression').hot(limit=20):
 		title = submission.title
 		comments = submission.comments
 		for comment in comments:
@@ -95,7 +97,7 @@ def version105(): # Print the average sentiment for a subreddit
 
 
 
-from matplotlib import pyplot as plt
+
 def version106(): #Modified V.01 with matplot for graphing
 	score_list = []
 	index_list = []
@@ -113,12 +115,12 @@ def version107():
 	for submission in reddit.subreddit('Temple').hot(limit=500) ]
 	print(score_list)
 
-def version108():
+def version108(): # Displays the average sentiment as the number of submissions analyized increases
 	i = 1
 	subreddit_score = []
 	avrgscore_list = []
 	index_list = []
-	for submission in reddit.subreddit('depression').hot(limit=900):
+	for submission in reddit.subreddit('worldnews').hot(limit=50):
 		title = submission.title
 		comments = submission.comments
 		sub_body = TextBlob(submission.selftext)
@@ -143,6 +145,43 @@ def version108():
 	plt.plot(index_list, avrgscore_list)
 	plt.show()
 
-def main():
-	version108()
-main()
+
+def version110(): # Display the average sentiment per post AND INCLUDE TITLE FOR SENTIMENT CALCULATION
+	i = 1
+	subreddit_score = []
+	for submission in reddit.subreddit('depression').hot(limit=30):
+		title = submission.title
+		str_title = TextBlob(title)
+		title_score = str_title.sentiment.polarity
+		comments = submission.comments
+		sub_body = TextBlob(submission.selftext)
+		sub_score = sub_body.sentiment.polarity
+		heading_score = title_score + sub_score
+		score_Array = [] 							# Score from title, body and comment
+		score_Array.append(title_score)
+		score_Array.append(sub_score)
+		comments.replace_more(limit=0) 				# To stop the 'MoreComments object has no attribute body' error
+		for comment in comments:
+			string_comment = TextBlob(comment.body)
+			score = string_comment.sentiment.polarity
+			score_Array.append(score)
+		nc = len(score_Array)						# nc = # of comment
+		avrg_Score = sum(score_Array)/(nc+1) 		# Average polarity for all comments.
+		subreddit_score.append(avrg_Score)
+		i+=1
+		avrg_subscore = float(sum(subreddit_score))/float(len(subreddit_score))
+		print(i,title, title_score, sub_score, avrg_subscore)
+
+version110()
+
+# def version200():
+# 	import flaskclass
+# 	flaskclass.index()
+
+
+
+
+
+# def main():
+# 	version108()
+# main()
