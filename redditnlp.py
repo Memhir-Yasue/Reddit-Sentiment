@@ -172,7 +172,36 @@ def version110(): # Display the average sentiment per post AND INCLUDE TITLE FOR
 		avrg_subscore = float(sum(subreddit_score))/float(len(subreddit_score))
 		print(i,title, title_score, sub_score, avrg_subscore)
 
-version110()
+def test(): # testing for flask by calling this function via redditnlp.test() on flaskapp.py
+	for i in range(10):
+		return 'Hello World. This is coming from the test function'
+
+def version111_flask():
+	i = 1
+	subreddit_score = []
+	for submission in reddit.subreddit('depression').hot(limit=10):
+		title = submission.title
+		str_title = TextBlob(title)
+		title_score = str_title.sentiment.polarity
+		comments = submission.comments
+		sub_body = TextBlob(submission.selftext)
+		sub_score = sub_body.sentiment.polarity
+		heading_score = title_score + sub_score
+		score_Array = [] 							# Score from title, body and comment
+		score_Array.append(title_score)
+		score_Array.append(sub_score)
+		comments.replace_more(limit=0) 				# To stop the 'MoreComments object has no attribute body' error
+		for comment in comments:
+			string_comment = TextBlob(comment.body)
+			score = string_comment.sentiment.polarity
+			score_Array.append(score)
+		nc = len(score_Array)						# nc = # of comment
+		avrg_Score = sum(score_Array)/(nc+1) 		# Average polarity for all comments.
+		subreddit_score.append(avrg_Score)
+		i+=1
+		avrg_subscore = float(sum(subreddit_score))/float(len(subreddit_score))
+		return (title, str(i))
+
 
 # def version200():
 # 	import flaskclass
