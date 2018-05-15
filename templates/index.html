@@ -6,7 +6,10 @@
 <body>
 	<h1>Prototype web app</h1>
 	{% for item in main_info %}
-		<h2>{{item}}</h2>
+		<h2>{{item[0]}}</h2>
+		{% if item[1] > 0 %} 
+			<h3>{{item[1]}}</h3>
+		{% endif %}
 	{% endfor %}
 
 <!--{% for item in main_infoee %}
