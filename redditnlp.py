@@ -264,8 +264,8 @@ def version125_flask(z): # Everything is now concatinated and one element
 		subreddit_score.append(avrg_Score)
 		i+=1
 		avrg_subscore = float(sum(subreddit_score))/float(len(subreddit_score))
-		string_avrg_subscore = str(avrg_subscore)
-		append_me = str(i)+'. '+title+' '+str(heading_score)+' '+str(comment_score)
+		# string_avrg_subscore = str(avrg_subscore)
+		append_me = str(i)+'. '+title+' '+str(heading_score)+' ',(comment_score)
 		# print(title_score_info)
 		title_score_info.append(append_me)		
 	return title_score_info
