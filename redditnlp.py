@@ -203,11 +203,11 @@ def version111_flask():
 		string_avrg_subscore = str(avrg_subscore)
 		return (title,string_avrg_subscore)
 
-def version120_flask():
+def version120_flask(z):
 	i = 1
 	subreddit_score = []
 	title_score_info = []
-	for submission in reddit.subreddit('nevertellmetheodds').hot(limit=5):
+	for submission in reddit.subreddit('nevertellmetheodds').hot(limit=z):
 		title = submission.title
 		str_title = TextBlob(title)
 		title_score = str_title.sentiment.polarity
@@ -229,13 +229,46 @@ def version120_flask():
 		i+=1
 		avrg_subscore = float(sum(subreddit_score))/float(len(subreddit_score))
 		string_avrg_subscore = str(avrg_subscore)
-		append_me = (i,title,heading_score,comment_score)
-		title_score_info.append(append_me)
+		append_me = str(i),title,heading_score,comment_score
+		# print(title_score_info)
+		title_score_info.append(append_me)		
 	return title_score_info
-
+# 	print(title_score_info[0])
+# version120_flask()
 # def version200():
 # 	import flaskclass
 # 	flaskclass.index()
+
+def version125_flask(z):
+	i = 1
+	subreddit_score = []
+	title_score_info = []
+	for submission in reddit.subreddit('nevertellmetheodds').hot(limit=z):
+		title = submission.title
+		str_title = TextBlob(title)
+		title_score = str_title.sentiment.polarity
+		comments = submission.comments
+		sub_body = TextBlob(submission.selftext)
+		sub_score = sub_body.sentiment.polarity
+		heading_score = title_score + sub_score
+		score_Array = [] 							# Score from title, body and comment
+		score_Array.append(title_score)
+		score_Array.append(sub_score)
+		comments.replace_more(limit=0) 				# To stop the 'MoreComments object has no attribute body' error
+		for comment in comments:
+			string_comment = TextBlob(comment.body)
+			comment_score = string_comment.sentiment.polarity
+			score_Array.append(comment_score)
+		nc = len(score_Array)						# nc = # of comment
+		avrg_Score = sum(score_Array)/(nc+1) 		# Average polarity for all comments.
+		subreddit_score.append(avrg_Score)
+		i+=1
+		avrg_subscore = float(sum(subreddit_score))/float(len(subreddit_score))
+		string_avrg_subscore = str(avrg_subscore)
+		append_me = str(i)+'. '+title,heading_score,comment_score
+		# print(title_score_info)
+		title_score_info.append(append_me)		
+	return title_score_info
 
 
 
