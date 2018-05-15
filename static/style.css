@@ -1,3 +1,9 @@
-.negative{
+#negative{
 	color:red;
+}
+#positive{
+	color:green;
+}
+#neutral{
+	color:#fcd735;
 }
