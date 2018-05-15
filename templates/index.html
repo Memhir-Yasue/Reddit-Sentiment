@@ -8,8 +8,12 @@
 	<h1>Prototype web app</h1>
 	{% for item in main_info %}
 		<h2>{{item[0]}}</h2>
-		{% if item[1] > 0 %} 
-			<h3>{{item[1]}}</h3>
+		{% if item[1] < 0 %} 
+			<h3 id="negative">{{item[1]}}</h3>
+		{% elif item[1] > 0 %}
+			<h3 id='positive'>{{item[1]}}</h3>
+		{% else %}
+			<h3 id='neutral'>{{item[1]}}</h3>
 		{% endif %}
 	{% endfor %}
 
