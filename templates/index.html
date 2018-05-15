@@ -5,6 +5,13 @@
 
 <body>
 	<h1>Prototype web app</h1>
-	<h2>{{num_array}}</h2>
+	{% for item in main_info %}
+	<h2>{{item}}</h2>
+	{% endfor %}
+
+<!--{% for item in main_infoee %}
+	<h3>{{item}}</h3>
+	{% endfor %}
+-->
 </body>
 </html>
