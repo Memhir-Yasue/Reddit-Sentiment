@@ -14,8 +14,10 @@ def index():
 
 @app.route('/newpage')
 def newpage():
-	num_array = [redditnlp.version120_flask() for i in range(10)]
-	return render_template("index.html", num_array=num_array)
+	main_info = redditnlp.version120_flask(10)
+	# main_infoee = ['Hi','I like','YOU!','bye!']
+
+	return render_template("index.html", main_info=main_info)
 
 
 
