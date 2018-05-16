@@ -7,18 +7,19 @@ import redditnlp
 # redditnlp.version110()
 
 server = flask.Flask(__name__)
-
+z = 10
+sub = 'Temple'
 @server.route('/')
 def index():
 	return 'Welcome'
 
 @server.route('/result')
 def result():
-	main_info = redditnlp.version125_flask(10)
+	main_info = redditnlp.version125_flask(sub, z)
 	return render_template("index.html", main_info=main_info)
 
 # dash app
-sentiment_Score = redditnlp.version125_dash(25)
+sentiment_Score = redditnlp.version125_dash(sub, z)
 app = dash.Dash(__name__, server=server, url_base_pathname='/dashapp')
 app.layout = html.Div(children=[
     html.H1(children='Dashapp Sentiment '),
@@ -30,7 +31,7 @@ app.layout = html.Div(children=[
     	id='Test-graph',
     	figure={
     		'data':[
-    			{'x':len(sentiment_Score),'y':sentiment_Score, 'type':'bar','name':'post'},
+    			{'x':len(sentiment_Score),'y':sentiment_Score, 'type':'line','name':'post'},
     		],
     		'layout':{
     			'title': 'Sentiment score per reddit post'

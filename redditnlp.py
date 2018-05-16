@@ -239,11 +239,11 @@ def version120_flask(z):
 # 	import flaskclass
 # 	flaskclass.index()
 
-def version125_flask(z): # Everything is now concatinated and one element
+def version125_flask(sub, z): # Everything is now concatinated and one element
 	i = 1
 	subreddit_score = []
 	title_score_info = []
-	for submission in reddit.subreddit('nevertellmetheodds').hot(limit=z):
+	for submission in reddit.subreddit(sub).hot(limit=z):
 		title = submission.title
 		str_title = TextBlob(title)
 		title_score = str_title.sentiment.polarity
@@ -270,12 +270,12 @@ def version125_flask(z): # Everything is now concatinated and one element
 		title_score_info.append(append_me)		
 	return title_score_info # returns the concatinated title with sentiment score
 
-def version125_dash(z): # Return a list of sentiment for all comments per post
+def version125_dash(sub, z): # Return a list of sentiment for all comments per post
 	i = 1
 	subreddit_score = []
 	title_score_info = []
 	avrg_Score_list = [] # A list of avrg_score to return as a list for dash visualization
-	for submission in reddit.subreddit('depression').hot(limit=z):
+	for submission in reddit.subreddit(sub).hot(limit=z):
 		title = submission.title
 		str_title = TextBlob(title)
 		title_score = str_title.sentiment.polarity
