@@ -1,15 +1,12 @@
 import flask
 from flask import Flask, request, render_template, session
 import dash
+import dash_core_components as dcc
 import dash_html_components as html
 import redditnlp
 # redditnlp.version110()
 
-
-
-
 server = flask.Flask(__name__)
-
 
 @server.route('/')
 def index():
@@ -21,9 +18,27 @@ def result():
 	return render_template("index.html", main_info=main_info)
 
 # dash app
+sentiment_Score = redditnlp.version125_dash(10)
 app = dash.Dash(__name__, server=server, url_base_pathname='/dashapp')
 app.layout = html.Div(children=[
-    html.H1(children='Dash App')])
+    html.H1(children='Dashapp Sentiment '),
+    html.Div(children='''
+    	Dash: A web application framework for Python.
+    	'''),
+
+    dcc.Graph(
+    	id='Test-graph',
+    	figure={
+    		'data':[
+    			{'x':[1,2,3,4,5,6,7,8,9,10],'y':sentiment_Score, 'type':'bar','name':'post'},
+    		],
+    		'layout':{
+    			'title': 'Sentiment score per reddit post'
+
+    		}
+    	}
+	)
+])
 
 
 
