@@ -10,13 +10,18 @@ import redditnlp
 server = flask.Flask(__name__)
 cache_flask = Cache(server, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
 z = 25
-sub = 'history'
+sub = 'politics'
+
+@server.route('/')
+def main():
+	return render_template("TBA.html")
+
 @server.route('/')
 def index():
 	return render_template("index.html")
 
 @server.route('/result', methods=['POST']) #Methods for HTML buttons
-@cache_flask.cached(timeout=60)
+@cache_flask.cached(timeout=120)
 def result():
 	main_info = redditnlp.version125_flask(sub, z)
 	return render_template("result.html", main_info=main_info)

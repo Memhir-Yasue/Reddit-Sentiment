@@ -1,6 +1,44 @@
 body{
 	background-color: #212121
 }
+.body{
+	position:fixed; ;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+}
+
+#input{
+	/*opacity: 0.10;*/
+}
+
+/*Custome class forked from bootstrap for input*/
+.form-control{  
+	  font-size: 2rem;
+	  padding: 0.5rem 1rem; 
+}
+
+input{
+	caret-color: #5bceff;
+}
+
+
+.politics{
+	background-color:rgba(244, 67, 54, 0.35);
+	color:#ff9800;
+	border: none;
+}
+.memes{
+	background-color:rgba(205, 220, 57, 0.35);
+	color:#ffeb3b;
+	border: none;
+
+}
+.lol{
+	background-color:rgba(233, 30, 99, 0.35);
+	color:rgb(224, 226, 225);
+	border: none;
+}
 
 
 /*#textfiled{

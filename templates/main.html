@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<<link rel="stylesheet" type="text/css" href="../static/css/mainstyle.css">
-	<!-- <link rel="stylesheet" type="text/css" hhref="{{ url_for('static', filename='css/mainstyle.css') }}" />  -->
 	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/mainstyle.css">
+	<!-- <link rel="stylesheet" type="text/css" hhref="{{ url_for('static', filename='css/mainstyle.css') }}" />  -->
 </head>
 <body>
-	<input type="text" name="subreddit">
-	<br>
-	<button type="button">Politics</button>
-	<button type="button">Memes</button>
-	<button type="button">League of Legends</button>
+	<div class="body">
+		<div class="container mx-auto">
+			<div class="row justify-content-center align-self-center">
+		
+				<input id ="input"class="form-control"type="text" placeholder="Insert subreddit name"name="subreddit">
+			
+				<button type="button" class="btn btn-info politics">Politics</button>
+				<button type="button" class="btn btn-light memes">Memes</button>
+				<button type="button" class="btn btn-warning lol">League of Legends</button>
+			</div>
+		</div>
+	</div>
+	<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
