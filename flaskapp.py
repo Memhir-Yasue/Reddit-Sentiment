@@ -9,18 +9,18 @@ import redditnlp
 
 server = flask.Flask(__name__)
 cache_flask = Cache(server, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
-z = 25
-sub = 'politics'
+z = 50
+sub = 'temple'
 
 @server.route('/')
 def main():
-	return render_template("TBA.html")
+	return render_template("main.html")
 
-@server.route('/')
+@server.route('/index')
 def index():
 	return render_template("index.html")
 
-@server.route('/result', methods=['POST']) #Methods for HTML buttons
+@server.route('/index/result', methods=['POST']) #Methods for HTML buttons
 @cache_flask.cached(timeout=120)
 def result():
 	main_info = redditnlp.version125_flask(sub, z)
@@ -31,7 +31,7 @@ def result():
 # dash app
 sentiment_Score = redditnlp.version125_dash(sub, z)
 # app starts below
-app = dash.Dash(__name__, server=server, url_base_pathname='/dashapp')
+app = dash.Dash(__name__, server=server, url_base_pathname='/index/dashapp')
 app.layout = html.Div(children=[
     html.H1(children='Dashapp Sentiment '),
     html.Div(children='''

@@ -1,1 +1,5 @@
 config.py
+__pycache__/
+dashtest.py
+nonflaskapp.py
+
