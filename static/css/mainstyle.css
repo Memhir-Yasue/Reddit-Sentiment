@@ -1,5 +1,5 @@
 body{
-	background-color: #151616
+	background-color: #151616 
 }
 .body{
 	position:fixed; ;
@@ -41,7 +41,11 @@ input{
 }
 
 
-/*#textfiled{
+/*
+
+body:#212121;
+
+#textfiled{
 	color:white;
 	opacity: 15%;
 }
@@ -65,4 +69,6 @@ input{
 	opacity: 60%;
 	text-decoration-color#e91e63:
 }
+
+
 */

@@ -4,13 +4,14 @@ from flask_caching import Cache
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
+import plotly.graph_objs as go
 import redditnlp
 # redditnlp.version110()
 
 server = flask.Flask(__name__)
 cache_flask = Cache(server, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
-z = 50
-sub = 'temple'
+z = 10
+sub = 'spacex'
 
 @server.route('/')
 def main():
@@ -21,7 +22,7 @@ def index():
 	return render_template("index.html")
 
 @server.route('/index/result', methods=['POST']) #Methods for HTML buttons
-@cache_flask.cached(timeout=120)
+@cache_flask.cached(timeout=240)
 def result():
 	main_info = redditnlp.version125_flask(sub, z)
 	return render_template("result.html", main_info=main_info)
@@ -32,20 +33,35 @@ def result():
 sentiment_Score = redditnlp.version125_dash(sub, z)
 # app starts below
 app = dash.Dash(__name__, server=server, url_base_pathname='/index/dashapp')
+colors = {
+    'background_chart':'#2d2d2d',
+    'background_paper':'#020202',
+    'chart':'#A9D3CE'
+}
 app.layout = html.Div(children=[
-    html.H1(children='Dashapp Sentiment '),
-    html.Div(children='''
-    	Dash: A web application framework for Python.
-    	'''),
-
+    # html.H1(children='Dashapp Sentiment '),
+    # html.Div(children='''
+    # 	Dash: A web application framework for Python.
+    # 	'''),
     dcc.Graph(
     	id='Test-graph',
     	figure={
     		'data':[
-    			{'x':len(sentiment_Score),'y':sentiment_Score, 'type':'bar','name':'post'},
+            go.Bar(
+                    x=len(sentiment_Score),
+                    y=sentiment_Score,
+                    opacity=0.6,
+                    marker=go.Marker(
+                        color='rgb(68, 219, 226)'
+                    )
+                    
+                )
+    			# {'x':len(sentiment_Score),'y':sentiment_Score, 'type':'bar','name':'sentiment',},
     		],
     		'layout':{
-    			'title': 'Sentiment score per reddit post for subreddit'+' '+sub
+                'plot_bgcolor': colors['background_chart'], # background color inside chart
+                'paper_bgcolor': colors['background_paper'], #color outside chart/background
+    			'title': 'Sentiment score per reddit post for'+' '+sub
     		}
     	}
 	)
