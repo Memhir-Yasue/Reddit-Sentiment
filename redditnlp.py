@@ -265,7 +265,7 @@ def version125_flask(sub, z): # Everything is now concatinated and one element
 		i+=1
 		avrg_subscore = float(sum(subreddit_score))/float(len(subreddit_score))
 		# string_avrg_subscore = str(avrg_subscore)
-		append_me = str(i)+'. '+title+' '+str(heading_score)+' ',(avrg_Score)
+		append_me = str(i)+'. '+title+' ',(avrg_Score)
 		# print(title_score_info)
 		title_score_info.append(append_me)		
 	return title_score_info # returns the concatinated title with sentiment score
