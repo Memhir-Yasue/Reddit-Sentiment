@@ -303,8 +303,33 @@ def version125_dash(sub, z): # Return a list of sentiment for all comments per p
 		avrg_Score_list.append(avrg_Score)	
 	return avrg_Score_list
 # version125_dash()
-
-
+###############################################################################
+def version150_flask(sub, z): # Unweighted % of positive and negative sentiment
+	i = 1
+	avrg_Score_list = [] # A list of avrg_score to return as a list for dash visualization
+	title_score_info = []
+	for submission in reddit.subreddit(sub).hot(limit=15):
+		pos_count = 1
+		neg_count = 1
+		pos_over_neg = 0							# % of positive comments
+		neg_over_pos = 0							# % of negative comments		
+		title = submission.title
+		comments = submission.comments
+		comments.replace_more(limit=0) 				# To stop the 'MoreComments object has no attribute body' error
+		for comment in comments:					
+			string_comment = TextBlob(comment.body)
+			comment_score = string_comment.sentiment.polarity # comment sentiment (-1 to 1)
+			if comment_score > 0:					# Count num of positive comments
+				pos_count+=1
+			if comment_score < 0:
+				neg_count+=1						# Count num of negative comments
+		pos_over_neg = (pos_count/(neg_count+pos_count))*100 # % of positive comments
+		neg_over_pos = (neg_count/(pos_count+neg_count))*100 # % of negative comments	
+		i+=1
+		append_me = str(i)+'. '+title+' ',pos_over_neg,neg_over_pos
+		title_score_info.append(append_me)
+	return title_score_info	
+# version150_flask('Temple')
 
 
 # def main():
