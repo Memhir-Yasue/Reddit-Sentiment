@@ -6,23 +6,34 @@ body{
   color:white;
 }
 
+#positive{
+  color:green;
+}
+
 #negative{
 	color:red;
+}
+
+#neutral{
+  color:#fcd735;
+}
+
+h3 {
+  display:inline;
+  padding: 20px;
+}
+
+#positive_percent{
+  color:green;
 }
 
 #negative_percent{
   color:red;
 }
 
-#positive_percent{
-	color:green;
-}
-#positive{
-  color:green;
-}
-#neutral{
-	color:#fcd735;
-}
+
+
+
 
 #result_button {
   border-radius: 4px;
