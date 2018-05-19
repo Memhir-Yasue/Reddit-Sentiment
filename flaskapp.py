@@ -73,9 +73,9 @@ app.layout = html.Div(children=[
             go.Bar(
                     x=len(sentiment_Score),
                     y=sentiment_Score,
-                    opacity=0.6,
+                    opacity=0.9,
                     marker=go.Marker(
-                        color='rgb(68, 219, 226)'
+                        color='rgb(33, 236, 255)'
                     )
                     
                 )
