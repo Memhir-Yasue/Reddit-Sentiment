@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" /> 
+</head>
+
+<body>
+	<h1 id='text'>Prototype web app</h1>
+	{% for item in main_info %}
+		<h2 id='text'>{{item[0]}}</h2>
+		<h3 id='positive_percent'>{{item[1]}}%</h3> 
+		<h3 id="negative_percent">{{item[2]}}%</h3>
+<!-- 		<h3 id='neutral'>{{item[1]}}</h3> -->
+	{% endfor %}
+
+<!--{% for item in main_infoee %}
+	<h3>{{item}}</h3>
+	{% endfor %}
+-->
+</body>
+</html>

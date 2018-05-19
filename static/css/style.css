@@ -9,8 +9,16 @@ body{
 #negative{
 	color:red;
 }
-#positive{
+
+#negative_percent{
+  color:red;
+}
+
+#positive_percent{
 	color:green;
+}
+#positive{
+  color:green;
 }
 #neutral{
 	color:#fcd735;

@@ -12,6 +12,11 @@ body{
 	/*opacity: 0.10;*/
 }
 
+*::-webkit-input-placeholder {
+	fomt-weight: bold;
+    color: #04b8d8!important;
+}
+
 /*Custome class forked from bootstrap for input*/
 .form-control{  
 	  font-size: 2rem;

@@ -308,7 +308,7 @@ def version150_flask(sub, z): # Unweighted % of positive and negative sentiment
 	i = 1
 	avrg_Score_list = [] # A list of avrg_score to return as a list for dash visualization
 	title_score_info = []
-	for submission in reddit.subreddit(sub).hot(limit=15):
+	for submission in reddit.subreddit(sub).hot(limit=z):
 		pos_count = 1
 		neg_count = 1
 		pos_over_neg = 0							# % of positive comments
@@ -328,8 +328,9 @@ def version150_flask(sub, z): # Unweighted % of positive and negative sentiment
 		i+=1
 		append_me = str(i)+'. '+title+' ',pos_over_neg,neg_over_pos
 		title_score_info.append(append_me)
+		# print( str(i)+'. '+title+' ',pos_over_neg,neg_over_pos)
 	return title_score_info	
-# version150_flask('Temple')
+# version150_flask('Temple',5)
 
 
 # def main():
