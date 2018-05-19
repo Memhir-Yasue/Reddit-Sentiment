@@ -11,7 +11,7 @@ import redditnlp
 server = flask.Flask(__name__)
 cache_flask = Cache(server, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
 z = 5
-sub = 'spacex'
+sub = 'Politics'
 
 @server.route('/')
 def main():
@@ -31,7 +31,7 @@ def result():
 @cache_flask.cached(timeout=240)
 def result_version150():
     main_info = redditnlp.version150_flask(sub,z)
-    return render_template("result_version150.html", main_info=main_info)
+    return render_template("result_version150.html", main_info=main_info, sub=sub) # passing sub to print reddit name on result page
 
 
 
@@ -53,7 +53,7 @@ def result_version150():
 
 
 # dash app
-sentiment_Score = redditnlp.version125_dash(sub, z)
+sentiment_Score = redditnlp.version125_dash(sub, z) #Calls the dash function which returns the sentiment scores
 # app starts below
 app = dash.Dash(__name__, server=server, url_base_pathname='/index/dashapp')
 colors = {

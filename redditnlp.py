@@ -326,7 +326,7 @@ def version150_flask(sub, z): # Unweighted % of positive and negative sentiment
 		pos_over_neg = (pos_count/(neg_count+pos_count))*100 # % of positive comments
 		neg_over_pos = (neg_count/(pos_count+neg_count))*100 # % of negative comments	
 		i+=1
-		append_me = str(i)+'. '+title+' ',pos_over_neg,neg_over_pos
+		append_me = str(i)+'. '+title+' ',int(pos_over_neg),int(neg_over_pos)
 		title_score_info.append(append_me)
 		# print( str(i)+'. '+title+' ',pos_over_neg,neg_over_pos)
 	return title_score_info	
