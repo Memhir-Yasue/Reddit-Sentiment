@@ -17,7 +17,7 @@ sub = 'Politics'
 def main():
 	return render_template("main.html")
 
-@server.route('/index')
+@server.route('/')
 def index():
 	return render_template("index.html")
 
