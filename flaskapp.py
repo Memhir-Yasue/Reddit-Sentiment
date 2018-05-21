@@ -9,7 +9,7 @@ import redditnlp
 # redditnlp.version110()
 
 server = flask.Flask(__name__)
-cache_flask = Cache(server, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
+# cache_flask = Cache(server, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
 z = 5
 # sub = 'Politics'
 
@@ -17,11 +17,12 @@ z = 5
 def main():
 	return render_template("main.html")
 
-@server.route('/', methods=['POST'])
-def result('/'):
+@server.route('/result', methods=['POST'])
+def result():
     sub = request.form['subreddit']
     main_info = redditnlp.version150_flask(sub,z)
-	return render_template("result_version150.html", main_info=main_info, sub=sub) # passing sub to print reddit name on result page
+
+    return render_template("result_version150.html", main_info=main_info, sub=sub) # passing sub to print reddit name on result page
 
 # @server.route('/index/result', methods=['POST']) #Methods for HTML buttons
 # @cache_flask.cached(timeout=240) 
@@ -53,11 +54,11 @@ def result('/'):
 
 
 
-
+# sub = result() 
 # # dash app
 # sentiment_Score = redditnlp.version125_dash(sub, z) #Calls the dash function which returns the sentiment scores
 # # app starts below
-# app = dash.Dash(__name__, server=server, url_base_pathname='/index/dashapp')
+# app = dash.Dash(__name__, server=server, url_base_pathname='/dashapp')
 # colors = {
 #     'background_chart':'#2d2d2d',
 #     'background_paper':'#020202',
