@@ -18,11 +18,12 @@ def main():
 	return render_template("main.html")
 
 @server.route('/result', methods=['POST'])
+# @cache_flask.cached(timeout=0) 
 def result():
     sub = request.form['subreddit']
-    main_info = redditnlp.version150_flask(sub,z)
+    main_info = redditnlp.version160_flask(sub,z)
 
-    return render_template("result_version150.html", main_info=main_info, sub=sub) # passing sub to print reddit name on result page
+    return render_template("result_percent.html", main_info=main_info, sub=sub) # passing sub to print reddit name on result page
 
 # @server.route('/index/result', methods=['POST']) #Methods for HTML buttons
 # @cache_flask.cached(timeout=240) 
