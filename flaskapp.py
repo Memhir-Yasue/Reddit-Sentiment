@@ -10,7 +10,7 @@ import redditnlp
 
 server = flask.Flask(__name__)
 # cache_flask = Cache(server, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
-z = 10
+z = 20
 # sub = 'Politics'
 
 @server.route('/')
@@ -21,7 +21,7 @@ def main():
 # @cache_flask.cached(timeout=0) 
 def result():
     sub = request.form['subreddit']
-    main_info = redditnlp.version160_flask(sub,z)
+    main_info = redditnlp.version170_flask(sub,z)
 
     return render_template("result_percent.html", main_info=main_info, sub=sub) # passing sub to print reddit name on result page
 
