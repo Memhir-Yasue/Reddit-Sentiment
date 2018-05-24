@@ -28,13 +28,13 @@
 			<div class="row justify-content-center align-self-center">
 				<form action= "{{url_for('result')}}" method ="POST"> <!-- Go to the url for the function result -->
 					<input id ="input" class="form-control" type="text" placeholder="Insert subreddit" name="subreddit">
+					<input type="submit" name="subreddit" value = "search" onclick="loading();" >
 				</form>
 				<br>
 				<form action= "{{url_for('result')}}" method ="POST"> 
 					<button type="submit" class="btn btn-info politics" name="subreddit" value ="politics" onclick="loading();">Politics</button>
 					<button type="submit" class="btn btn-light memes" name="subreddit" value = "memes" onclick="loading();">Memes</button>
 					<button type="submit" class="btn btn-warning lol" name="subreddit" value="leagueoflegends"onclick="loading();">League of Legends</button>
-					<input type="submit" name="subreddit" value="search" onclick="loading();" >
 				</form>
 			</div>
 		</div>

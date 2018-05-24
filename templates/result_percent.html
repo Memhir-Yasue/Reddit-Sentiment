@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mainstyle.css') }}" /> 
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" /> 
 </head>
 
@@ -12,6 +11,7 @@
 				<h3 id='positive_percent'>{{item[1]}}% positive</h3> 
 				<h3 id="negative_percent">{{item[2]}}% negative</h3>
 				<h3 id='count'>Total post(s): {{item[3]}}</h3>
+				<h3 id='score'>Sentiment score:{{item[4]}}<h3>
 		<!-- 		<h3 id='neutral'>{{item[1]}}</h3> -->
 			{% endfor %}
 <!--{% for item in main_infoee %}
