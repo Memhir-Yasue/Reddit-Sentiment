@@ -1,3 +1,19 @@
+/*div #content {
+  display: none;
+}*/
+
+div #loading {
+  display: none;
+  top: 200 px;
+  margin: auto;
+  position: center;
+  z-index: 1000;
+  width: 160px;
+  height: 24px;
+  background: url(/static/ajax-loader.gif) no-repeat;
+}
+
+
 body{
 	background-color: #151616 
 }

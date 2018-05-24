@@ -10,7 +10,7 @@ import redditnlp
 
 server = flask.Flask(__name__)
 # cache_flask = Cache(server, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
-z = 5
+z = 10
 # sub = 'Politics'
 
 @server.route('/')
