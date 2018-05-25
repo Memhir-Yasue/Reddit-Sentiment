@@ -368,8 +368,6 @@ def version170_flask(sub,z): # Show score along side
 	for submission in reddit.subreddit(sub).hot(limit=z):
 		score_Array = [] # List of sentiment score
 		average_score = 0
-		if (len(score_Array)!=0):
-		    average_score = float(sum(score_Array))/float(len(score_Array)) # Average score 
 		pos_count = 1
 		neg_count = 1
 		pos_over_neg = 0							# % of positive comments
@@ -388,7 +386,8 @@ def version170_flask(sub,z): # Show score along side
 				neg_count+=1						# Count num of negative comments
 		pos_over_neg = (pos_count/(neg_count+pos_count))*100 # % of positive comments
 		neg_over_pos = (neg_count/(pos_count+neg_count))*100 # % of negative comments
-		total_count = pos_count + neg_count	
+		total_count = pos_count + neg_count
+		average_score = float(sum(score_Array))/float(len(score_Array)) # Average score 	
 		i+=1
 		append_me = str(i)+'. '+title+' ',int(pos_over_neg),int(neg_over_pos), total_count, average_score
 		title_score_info.append(append_me)
