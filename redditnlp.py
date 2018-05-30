@@ -1,3 +1,4 @@
+from __future__ import division # For float dividion by zero error
 from textblob import TextBlob
 from matplotlib import pyplot as plt
 from flask import Flask, request, render_template, session
@@ -387,7 +388,8 @@ def version170_flask(sub,z): # Show score along side
 		pos_over_neg = (pos_count/(neg_count+pos_count))*100 # % of positive comments
 		neg_over_pos = (neg_count/(pos_count+neg_count))*100 # % of negative comments
 		total_count = pos_count + neg_count
-		average_score = float(sum(score_Array))/float(len(score_Array)) # Average score 	
+		if float(len(score_Array)) !=0:
+		    average_score = float(sum(score_Array))/float(len(score_Array)) # Average score 	
 		i+=1
 		append_me = str(i)+'. '+title+' ',int(pos_over_neg),int(neg_over_pos), total_count, average_score
 		title_score_info.append(append_me)
