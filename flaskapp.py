@@ -6,11 +6,12 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
 import redditnlp
+import user_redditnlp
 # redditnlp.version110()
 
 server = flask.Flask(__name__)
 # cache_flask = Cache(server, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
-z = 20
+z = 50
 # sub = 'Politics'
 
 @server.route('/')
@@ -24,6 +25,14 @@ def result():
     main_info = redditnlp.version170_flask(sub,z)
 
     return render_template("result_percent.html", main_info=main_info, sub=sub) # passing sub to print reddit name on result page
+
+@server.route('/result/user', methods =['POST'])
+def user():
+	sub = request.form['subreddit']
+	user_info = user_redditnlp.user_frm_subreddit(sub,z)
+
+	return render_template("subredditor.html", user_info=user_info)
+
 
 # @server.route('/index/result', methods=['POST']) #Methods for HTML buttons
 # @cache_flask.cached(timeout=240) 
