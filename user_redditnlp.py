@@ -6,16 +6,14 @@ reddit = praw.Reddit(client_id=config.client_id,
                      client_secret=config.client_secret,
                      user_agent="Testing user smuggle")
 
-def user_frm_subreddit():
-	i = 0
+def user_frm_subreddit(sub, z):
 	user = []
-	for submission in reddit.subreddit('Temple').hot(limit=10):
+	for submission in reddit.subreddit(sub).hot(limit=z):
 		comments = submission.comments
 		for comment in comments:
-			i+=1
 			user.append(comment.author)
 	return user
-user = user_frm_subreddit()
+
 
 
 
