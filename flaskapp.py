@@ -11,7 +11,7 @@ import user_redditnlp
 
 server = flask.Flask(__name__)
 # cache_flask = Cache(server, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
-z = 50
+z = 20
 # sub = 'Politics'
 
 @server.route('/')
