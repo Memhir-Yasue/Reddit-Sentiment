@@ -6,6 +6,7 @@ reddit = praw.Reddit(client_id=config.client_id,
                      client_secret=config.client_secret,
                      user_agent="Testing user smuggle")
 
+# ----------- old version ----------#
 def user_frm_subreddit01(sub, z):
 	user = []
 	for submission in reddit.subreddit(sub).hot(limit=z):
@@ -20,6 +21,7 @@ def user_frm_subreddit(sub, z):
 	user = []
 	for submission in reddit.subreddit(sub).hot(limit=z):
 		comments = submission.comments
+		comments.replace_more(limit=0) 	
 		for comment in comments:
 			user.append(comment.author)
 	for i in range (len(user)):
