@@ -24,5 +24,4 @@ sentences = ["VADER is smart, handsome, and funny.",  # positive sentence exampl
 analyzer = SentimentIntensityAnalyzer()
 for sentence in sentences:
     vs = analyzer.polarity_scores(sentence)
-    # print(vs)
     print("{:-<65} {}".format(sentence, str(vs)))
