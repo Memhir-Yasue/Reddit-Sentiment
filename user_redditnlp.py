@@ -29,14 +29,8 @@ def user_frm_subreddit(sub, z):
 		participation.append(num)
 		append_me = user[i], participation[i]
 		main.append(append_me)
-
+	main = list(set(main))
 	return main
-
-
-
-
-
-
 
 #
 #	Part 1.5
