@@ -6,13 +6,29 @@ reddit = praw.Reddit(client_id=config.client_id,
                      client_secret=config.client_secret,
                      user_agent="Testing user smuggle")
 
-def user_frm_subreddit(sub, z):
+def user_frm_subreddit01(sub, z):
 	user = []
 	for submission in reddit.subreddit(sub).hot(limit=z):
 		comments = submission.comments
 		for comment in comments:
 			user.append(comment.author)
 	return user
+
+def user_frm_subreddit(sub, z):
+	main = []
+	participation = [] # Number of occurence a redditor has commened on submissions
+	user = []
+	for submission in reddit.subreddit(sub).hot(limit=z):
+		comments = submission.comments
+		for comment in comments:
+			user.append(comment.author)
+	for i in range (len(user)):
+		num = user.count(user[i])
+		participation.append(num)
+		append_me = user[i], participation[i]
+		main.append(append_me)
+
+	return main
 
 
 
