@@ -1,6 +1,8 @@
 from textblob import TextBlob
 import praw
 import config
+from operator import itemgetter # for sorting a specific index of an array. 
+								# In this case, to sort by num of occurance while having the redditor name tied along side to it
 
 reddit = praw.Reddit(client_id=config.client_id,
                      client_secret=config.client_secret,
@@ -29,11 +31,12 @@ def user_frm_subreddit(sub, z):
 		participation.append(num)
 		append_me = user[i], participation[i]
 		main.append(append_me)
-	main = list(set(main))
-	return main
+	main = list(set(main)) # remove duplicates 
+	main_sorted =  sorted(main, key=itemgetter(1),reverse=True) # Sort by the first index of the array and reverse to make it largest to smallest
+	return main_sorted
 
 #
-#	Part 1.5
+#	Part 1.5 (Already done??? not needed?)
 #
 def repetition(user):
 	occurance_list = []
@@ -45,8 +48,6 @@ def repetition(user):
 		occurance_list.append(occurance)
 
 # repetition(user)
-
-
 
 
 
