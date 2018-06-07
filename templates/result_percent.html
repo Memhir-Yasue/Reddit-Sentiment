@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+		<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" /> 
 </head>
 
 <body>	
 
 		<h1 id='text'>Sentiment result for {{sub}}</h1>
-		<form action= "{{url_for('user')}}" method ="POST"> 
-			<button name='subreddit' value={{sub}}>Click me!</button>
+		<form action= "{{url_for('user')}}" method ="POST">
+			<button type="button" class="btn btn-info" name='subreddit' value={{sub}}>Top participants</button>
 		</form>
 			{% for item in main_info %}
 				<h2 id='text'>{{item[0]}}</h2>
