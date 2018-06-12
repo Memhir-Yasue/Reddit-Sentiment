@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" />
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" /> 
+	<script type="text/javascript">// <![CDATA[
+        function loading(){
+            $("#loading").show();
+            $("#content").hide();       
+        }
+// ]]></script>
+	<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>	
 
 		<h1 id='text'>Sentiment result for {{sub}}</h1>
 		<form action= "{{url_for('user')}}" method ="POST">
-			<button type="button" class="btn btn-info" name='subreddit' value={{sub}}>Top participants</button>
+			<button type="submit" class="btn btn-info" name='subreddit' value={{sub}}  onclick="loading();">Top Participants</button>
 		</form>
 			{% for item in main_info %}
 				<h2 id='text'>{{item[0]}}</h2>
